@@ -1,7 +1,9 @@
 const sgMail = require('@sendgrid/mail')
-const  sendgridAPIKey = "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";
+// const  sendgridAPIKey = "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";
 
-sgMail.setApiKey(sendgridAPIKey)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+// sgMail.setApiKey(sendgridAPIKey)
 
 const sendWelcomeEmail = (email, name) => {
     sgMail.send({
@@ -22,7 +24,7 @@ const sendGoodbyeEmail = (email, name) => {
     sgMail.send({
         to: email,
         from: 'vipinyadav1305@gmail.com',
-        sunject: 'Goodbye from The company',
+        subject: 'Goodbye from The company',
         text: `Have a bright future, ${name}. Let me know how you feels.`
     }).then(() => {}, error => {
         console.error(error);
